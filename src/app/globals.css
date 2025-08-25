@@ -1,0 +1,371 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --radius: 0.75rem; /* A bit more rounded for a softer look */
+  --background: oklch(0.99 0.005 240); /* Lighter, cooler background */
+  --foreground: oklch(0.22 0.04 255);   /* Dark, slightly saturated blue-gray */
+  --card: oklch(1 0 0); /* Pure white cards */
+  --card-foreground: oklch(0.22 0.04 255);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.22 0.04 255);
+  --primary: oklch(0.6 0.17 260); /* A vibrant, modern blue */
+  --primary-foreground: oklch(0.99 0.01 260); /* High contrast foreground for primary */
+  --secondary: oklch(0.96 0.01 240); /* Subtly different secondary background */
+  --secondary-foreground: oklch(0.3 0.03 255);
+  --muted: oklch(0.96 0.01 240);
+  --muted-foreground: oklch(0.45 0.02 255); /* Softer muted text */
+  --accent: oklch(0.96 0.01 240);
+  --accent-foreground: oklch(0.3 0.03 255);
+  --destructive: oklch(0.6 0.22 25); /* A clear but not overpowering red */
+  --border: oklch(0.92 0.015 240); /* Softer borders */
+  --input: oklch(0.92 0.015 240);
+  --ring: oklch(0.65 0.2 260); /* Ring color matching primary accent */
+  
+  /* Re-themed chart colors for better harmony */
+  --chart-1: oklch(0.7 0.15 260); /* Primary blue tint */
+  --chart-2: oklch(0.7 0.15 180); /* Teal */
+  --chart-3: oklch(0.7 0.15 300); /* Purple */
+  --chart-4: oklch(0.7 0.15 130); /* Green */
+  --chart-5: oklch(0.7 0.15 50);  /* Orange */
+
+  --sidebar: oklch(0.98 0.008 240);
+  --sidebar-foreground: oklch(0.3 0.03 255);
+  --sidebar-primary: oklch(0.6 0.17 260);
+  --sidebar-primary-foreground: oklch(0.99 0.01 260);
+  --sidebar-accent: oklch(0.92 0.015 240);
+  --sidebar-accent-foreground: oklch(0.22 0.04 255);
+  --sidebar-border: oklch(0.9 0.01 240);
+  --sidebar-ring: oklch(0.65 0.2 260);
+}
+
+.dark {
+  --background: oklch(0.12 0.02 260); /* Deep, cool dark blue */
+  --foreground: oklch(0.95 0.01 240); /* Soft off-white */
+  --card: oklch(0.15 0.025 260); /* Slightly lighter card background */
+  --card-foreground: oklch(0.95 0.01 240);
+  --popover: oklch(0.15 0.025 260);
+  --popover-foreground: oklch(0.95 0.01 240);
+  --primary: oklch(0.7 0.18 255); /* Brighter, more vivid primary */
+  --primary-foreground: oklch(0.1 0.03 260); /* High contrast for dark primary */
+  --secondary: oklch(0.2 0.02 260);
+  --secondary-foreground: oklch(0.9 0.01 240);
+  --muted: oklch(0.2 0.02 260);
+  --muted-foreground: oklch(0.65 0.015 240); /* Lighter muted text */
+  --accent: oklch(0.2 0.02 260);
+  --accent-foreground: oklch(0.9 0.01 240);
+  --destructive: oklch(0.7 0.18 25); /* Consistent destructive red */
+  --border: oklch(0.25 0.02 260); /* Subtly visible borders */
+  --input: oklch(0.25 0.02 260);
+  --ring: oklch(0.7 0.2 255);
+  
+  /* Re-themed chart colors for dark mode */
+  --chart-1: oklch(0.65 0.18 255); /* Primary blue tint */
+  --chart-2: oklch(0.65 0.18 180); /* Teal */
+  --chart-3: oklch(0.65 0.18 300); /* Purple */
+  --chart-4: oklch(0.65 0.18 130); /* Green */
+  --chart-5: oklch(0.65 0.18 50);  /* Orange */
+
+  --sidebar: oklch(0.12 0.02 260);
+  --sidebar-foreground: oklch(0.9 0.01 240);
+  --sidebar-primary: oklch(0.7 0.18 255);
+  --sidebar-primary-foreground: oklch(0.1 0.03 260);
+  --sidebar-accent: oklch(0.2 0.02 260);
+  --sidebar-accent-foreground: oklch(0.95 0.01 240);
+  --sidebar-border: oklch(0.25 0.02 260);
+  --sidebar-ring: oklch(0.7 0.2 255);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    /* Apply subtle gradient using background and muted variables */
+    @apply text-foreground; /* Keep apply for text color */
+    /* Set background properties directly */
+    background: linear-gradient(to bottom, oklch(from var(--background) l c h), oklch(from var(--muted) l c h / 0.1));
+    background-color: var(--background); /* Fallback */
+  }
+}
+
+@layer components {
+  /* Navigation Link Styles */
+  .nav-link-active {
+    @apply text-sm font-medium transition-colors text-foreground;
+  }
+  
+  .nav-link-active:hover {
+    @apply text-primary;
+  }
+  
+  .nav-link-inactive {
+    @apply text-sm font-medium transition-colors text-muted-foreground;
+  }
+  
+  .nav-link-inactive:hover {
+    @apply text-primary;
+  }
+
+  /* Enhanced Icon Styles for Better Dark Theme Visibility */
+  .icon-container-enhanced {
+    background: var(--card);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(8px);
+    transition: all 0.2s ease-in-out;
+  }
+
+  .icon-container-enhanced:hover {
+    background: var(--card);
+    border-color: var(--primary);
+    box-shadow: 0 4px 12px var(--primary)/10;
+    transform: translateY(-1px);
+  }
+
+  .dark .icon-container-enhanced {
+    background: oklch(from var(--card) l c h / 0.7);
+    border-color: oklch(from var(--border) l c h / 0.3);
+    box-shadow: 0 2px 8px oklch(0 0 0 / 0.1);
+  }
+
+  .dark .icon-container-enhanced:hover {
+    background: oklch(from var(--card) l c h / 0.9);
+    border-color: var(--primary);
+    box-shadow: 0 6px 20px var(--primary)/15, 0 2px 8px oklch(0 0 0 / 0.2);
+  }
+
+  /* Improved icon visibility in dark theme */
+  .themed-icon {
+    transition: all 0.2s ease-in-out;
+  }
+
+  .dark .themed-icon {
+    filter: drop-shadow(0 1px 2px oklch(0 0 0 / 0.4)) contrast(1.15) brightness(1.1);
+  }
+
+  .themed-icon:hover {
+    transform: scale(1.1);
+  }
+
+  .dark .themed-icon:hover {
+    filter: drop-shadow(0 2px 4px oklch(0 0 0 / 0.5)) contrast(1.2) brightness(1.15);
+  }
+
+  /* Status Badge Styles - Better visibility in both themes */
+  .badge-success {
+    @apply bg-green-50 text-green-700 border-green-200;
+  }
+  
+  .dark .badge-success {
+    @apply bg-green-500/10 text-green-400 border-green-500/20;
+  }
+  
+  .badge-info {
+    @apply bg-blue-50 text-blue-700 border-blue-200;
+  }
+  
+  .dark .badge-info {
+    @apply bg-blue-500/10 text-blue-400 border-blue-500/20;
+  }
+  
+  .badge-warning {
+    @apply bg-orange-50 text-orange-700 border-orange-200;
+  }
+  
+  .dark .badge-warning {
+    @apply bg-orange-500/10 text-orange-400 border-orange-500/20;
+  }
+  
+  .badge-highlight {
+    @apply bg-emerald-50 text-emerald-700 border-emerald-200;
+  }
+  
+  .dark .badge-highlight {
+    @apply bg-emerald-500/10 text-emerald-400 border-emerald-500/20;
+  }
+
+  /* Achievement gradient badge with better contrast */
+  .badge-prize {
+    @apply bg-gradient-to-r from-yellow-400 to-orange-500 text-white border-0;
+  }
+  
+  .dark .badge-prize {
+    @apply bg-gradient-to-r from-yellow-500 to-orange-600 text-white border-0;
+  }
+
+  /* Gradient text with better light mode visibility */
+  .gradient-text {
+    @apply bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text;
+  }
+  
+  /* Ensure text gradient has good contrast in light mode */
+  .light .gradient-text {
+    background: linear-gradient(to right, 
+      oklch(from var(--foreground) calc(l * 0.8) c h),
+      oklch(from var(--primary) calc(l * 0.9) c h),
+      oklch(from var(--foreground) calc(l * 0.8) c h)
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+  }
+
+  /* Better contrast for small stat labels */
+  .stat-label {
+    @apply text-xs font-semibold text-foreground;
+  }
+  
+  .dark .stat-label {
+    @apply text-xs font-medium text-muted-foreground;
+  }
+
+  /* Custom animations for enhanced UX */
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in-right {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-in-left {
+    from {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slide-in-right {
+    from {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes gradient-shift {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.6s ease-out;
+  }
+
+  .animate-fade-in-right {
+    animation: fade-in-right 0.5s ease-out;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.8s ease-out;
+  }
+
+  .animate-slide-in-left {
+    animation: slide-in-left 0.8s ease-out;
+  }
+
+  .animate-slide-in-right {
+    animation: slide-in-right 0.8s ease-out;
+  }
+
+  .animate-gradient-shift {
+    background-size: 200% 200%;
+    animation: gradient-shift 3s ease infinite;
+  }
+
+  /* Smooth scroll behavior */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Enhanced focus states for accessibility */
+  *:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  .card {
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+  .card:hover {
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+}
