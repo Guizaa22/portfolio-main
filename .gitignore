@@ -56,4 +56,4 @@ next-env.d.ts
 *.synctex.gz
 *.out
 *.fls
-*.fdb_latexmk 
+*.fdb_latexmk *_Zone.Identifier
