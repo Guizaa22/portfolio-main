@@ -130,7 +130,7 @@ export default function Home() {
           {/* Image */}
           <div className="flex-shrink-0">
             <Image
-              src="/img/me.png" // Cache-bust on Vercel CDN
+                             src="/img/me.png" // Updated to use your new photo
               alt="Med Guizani"
               width={180} // Adjust size as needed
               height={180}

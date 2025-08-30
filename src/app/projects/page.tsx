@@ -6,7 +6,12 @@ import { Button } from '@/components/ui/button';
 import { Trophy, BookOpen, Code, ExternalLink, Calendar, Target, Award, Users } from 'lucide-react';
 import Link from 'next/link';
 
-type ProjectCommon = {
+// Types to enable safe access to stats based on item type
+type ProjectStats = { frontend: string; backend: string; deployment: string };
+type CompetitionStats = { participants: string; prize: string; rank: string };
+type PublicationStats = { venue: string; impact: string; type: string };
+
+type BaseItem = {
   id: number;
   title: string;
   subtitle: string;
@@ -15,42 +20,19 @@ type ProjectCommon = {
   description: string;
   highlights: string[];
   skills: string[];
-  status: 'ongoing' | 'completed' | 'live' | 'published' | 'won' | string;
+  status: string;
   featured?: boolean;
   link?: string;
   liveUrl?: string;
 };
 
-type CompetitionProject = ProjectCommon & {
-  type: 'competition';
-  stats: {
-    participants: string;
-    prize: string;
-    rank: string;
-  };
-};
+type ProjectItem = BaseItem & { type: 'project'; stats: ProjectStats };
+type CompetitionItem = BaseItem & { type: 'competition'; stats: CompetitionStats };
+type PublicationItem = BaseItem & { type: 'publication'; stats: PublicationStats };
 
-type PublicationProject = ProjectCommon & {
-  type: 'publication';
-  stats: {
-    venue: string;
-    impact: string;
-    type: string;
-  };
-};
+type PortfolioItem = ProjectItem | CompetitionItem | PublicationItem;
 
-type SoftwareProject = ProjectCommon & {
-  type: 'project';
-  stats: {
-    frontend: string;
-    backend: string;
-    deployment: string;
-  };
-};
-
-type Project = CompetitionProject | PublicationProject | SoftwareProject;
-
-const projectsData: Project[] = [
+const projectsData: PortfolioItem[] = [
   {
     id: 1,
     type: 'project',
