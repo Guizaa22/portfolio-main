@@ -7,7 +7,7 @@ import { Trophy, BookOpen, Code, ExternalLink, Calendar, Target, Award, Users } 
 import Link from 'next/link';
 
 // Types to enable safe access to stats based on item type
-type ProjectStats = { frontend: string; backend: string; deployment: string };
+type ProjectStats = { frontend: string; backend: string; deployment: string; Microcontroller?: string };
 type CompetitionStats = { participants: string; prize: string; rank: string };
 type PublicationStats = { venue: string; impact: string; type: string };
 
@@ -53,7 +53,7 @@ const projectsData: PortfolioItem[] = [
     status: 'ongoing',
     featured: true,
     link: 'https://github.com/Guizaa22',
-    stats: { frontend: 'Python', backend: 'Raspberry Pi', deployment: 'Local Network' }
+    stats: { frontend: 'Python', backend: 'C', Microcontroller: 'Raspberry Pi', deployment: 'Local Network' }
   },
   {
     id: 2,
@@ -137,7 +137,7 @@ const projectsData: PortfolioItem[] = [
     skills: ['Arduino', 'Ultrasonic Sensors', 'Radar Systems', 'Distance Measurement', 'Object Detection'],
     status: 'completed',
     link: 'https://github.com/Guizaa22',
-    stats: { frontend: 'Arduino', backend: 'Sensors', deployment: 'Embedded' }
+    stats: { frontend: 'Arduino IDE', Microcontroller: 'Arduino', backend: 'C', deployment: 'Embedded' }
   }
 ];
 
