@@ -31,8 +31,8 @@ const skillsCategories = [
     icon: CodeXml,
     skills: [
       { name: "Python", iconName: "python" },
-      { name: "C/C++", iconName: "python" },
-      { name: "Java", iconName: "python" },
+      { name: "C/C++", iconName: "c" },
+      { name: "Java", iconName: "java" },
       { name: "SQL", iconName: "sql" },
     ],
   },
@@ -40,28 +40,30 @@ const skillsCategories = [
     name: "Electronics & IoT",
     icon: BrainCircuit,
     skills: [
-      { name: "Arduino", iconName: "python" },
-      { name: "ESP32", iconName: "python" },
-      { name: "Raspberry Pi", iconName: "python" },
-      { name: "STM32", iconName: "python" },
+      { name: "Arduino", iconName: "arduino" },
+      { name: "ESP32", iconName: "arduino" },
+      { name: "Raspberry Pi", iconName: "raspberrypi" },
+      { name: "STM32", iconName: "stm32" },
     ],
   },
   {
     name: "Design & CAD Tools",
     icon: ServerCog,
     skills: [
-      { name: "SolidWorks", iconName: "python" },
-      { name: "Matlab", iconName: "python" },
-      { name: "Xilinx ISE", iconName: "python" },
-      { name: "Quartus", iconName: "python" },
+      { name: "SolidWorks", iconName: "solidworks" },
+      { name: "Matlab", iconName: "matlab" },
+      { name: "Xilinx ISE", iconName: "xilinx" },
+      { name: "Quartus", iconName: "quartus" },
     ],
   },
   {
     name: "Web Development",
     icon: WandSparkles,
     skills: [
-      { name: "HTML/CSS/JS", iconName: "python" },
-      { name: "Ubuntu Linux", iconName: "python" },
+      { name: "HTML", iconName: "html" },
+      { name: "CSS", iconName: "css" },
+      { name: "JavaScript", iconName: "javascript" },
+      { name: "Ubuntu Linux", iconName: "linux" },
     ],
   },
   {
@@ -131,7 +133,7 @@ export default function Home() {
           <div className="flex-shrink-0">
             <Image
                              src="/img/me.png" // Updated to use your new photo
-              alt="Med Guizani"
+              alt="Mohamed Guizani"
               width={180} // Adjust size as needed
               height={180}
               priority // Load image eagerly as it's above the fold
@@ -141,7 +143,7 @@ export default function Home() {
           {/* Text Content */}
           <div className="text-center md:text-left flex-grow">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-3">
-              Med Guizani
+              Mohamed Guizani
             </h1>
             <h2 className="text-xl sm:text-2xl md:text-3xl font-medium text-muted-foreground mb-6">
               Senior Technical in Electronics
@@ -292,9 +294,8 @@ export default function Home() {
             {skillsCategories.map((category) => (
               <div
                 key={category.name}
-                className="group relative overflow-hidden rounded-2xl border border-border/20 bg-card/50 backdrop-blur-sm p-8 shadow-lg transition-all duration-300 hover:shadow-xl hover:border-primary/40 hover:-translate-y-1"
+                className="skills-card group"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/8 to-secondary/8 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary/60 to-secondary/60 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
                 
                 <div className="relative z-10">
@@ -311,15 +312,15 @@ export default function Home() {
                     {category.skills.map((skill) => (
                       <div
                         key={skill.name}
-                        className="group/skill flex items-center gap-3 rounded-xl p-3 bg-background/60 border border-border/30 transition-all duration-200 hover:bg-background/80 hover:border-primary/30 hover:shadow-md hover:scale-105"
+                        className="skill-item group/skill"
                       >
-                        <div className="icon-container-enhanced flex h-9 w-9 items-center justify-center rounded-lg p-1">
+                        <div className="skill-icon-container">
                           <ThemedIcon
                             name={skill.iconName}
                             alt={`${skill.name} logo`}
-                            width={24}
-                            height={24}
-                            className="themed-icon h-6 w-6 object-contain"
+                            width={20}
+                            height={20}
+                            className="themed-icon h-5 w-5 object-contain"
                           />
                         </div>
                         <span className="text-sm font-semibold text-foreground/85 group-hover/skill:text-foreground transition-colors whitespace-nowrap">{skill.name}</span>

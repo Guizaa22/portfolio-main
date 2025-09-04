@@ -26,6 +26,7 @@ type BaseItem = {
   liveUrl?: string;
 };
 
+
 type ProjectItem = BaseItem & { type: 'project'; stats: ProjectStats };
 type CompetitionItem = BaseItem & { type: 'competition'; stats: CompetitionStats };
 type PublicationItem = BaseItem & { type: 'publication'; stats: PublicationStats };
