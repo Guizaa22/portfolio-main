@@ -22,7 +22,7 @@ import {
 const testimonials = [
   {
     id: 1,
-    name: "Ahmed Ben Ali",
+    name: "Aymen Dhbiaibi",
     company: "COFAT Automotive",
     position: "Project Manager",
     rating: 5,
@@ -35,7 +35,7 @@ const testimonials = [
   },
   {
     id: 2,
-    name: "Dr. Sarah Martinez",
+    name: "Zied Ben Amor",
     company: "TBC Technopole",
     position: "Research Director",
     rating: 5,
@@ -48,7 +48,7 @@ const testimonials = [
   },
   {
     id: 3,
-    name: "Prof. Karim Mansouri",
+    name: "Karim Mansouri",
     company: "ENIT Robotics Lab",
     position: "Laboratory Supervisor",
     rating: 5,
@@ -61,7 +61,7 @@ const testimonials = [
   },
   {
     id: 4,
-    name: "Elena Rossi",
+    name: "Akrem ben ali",
     company: "Tech Innovations Ltd",
     position: "CTO",
     rating: 4,
@@ -295,7 +295,7 @@ export default function FeedbackPage() {
         {filteredTestimonials.map((testimonial, index) => (
           <div
             key={testimonial.id}
-            className={`bg-card border border-border rounded-xl p-6 transition-all duration-300 hover:shadow-lg hover:border-primary/40 cursor-pointer ${
+            className={`feedback-card ${
               index === currentTestimonial ? 'ring-2 ring-primary/20' : ''
             }`}
             onClick={() => setCurrentTestimonial(index)}
@@ -304,7 +304,7 @@ export default function FeedbackPage() {
               <div className="flex items-center gap-3">
                 <div className="text-2xl">{testimonial.avatar}</div>
                 <div>
-                  <div className="font-semibold text-foreground">{testimonial.name}</div>
+                  <div className="font-semibold text-foreground client-name">{testimonial.name}</div>
                   <div className="text-sm text-muted-foreground">{testimonial.company}</div>
                 </div>
               </div>
@@ -313,7 +313,7 @@ export default function FeedbackPage() {
               </div>
             </div>
 
-            <p className="text-muted-foreground mb-4 line-clamp-3">
+            <p className="text-muted-foreground mb-4 line-clamp-3 testimonial-quote">
               &ldquo;{testimonial.feedback}&rdquo;
             </p>
 

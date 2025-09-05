@@ -36,7 +36,35 @@ const skillsCategories = [
       { name: "Python", iconName: "python" },
       { name: "C/C++", iconName: "c" },
       { name: "Java", iconName: "java" },
+    ],
+  },
+  {
+    name: "Web Development",
+    icon: WandSparkles,
+    skills: [
+      { name: "HTML", iconName: "html" },
+      { name: "CSS", iconName: "css" },
+      { name: "JavaScript", iconName: "javascript" },
+      { name: "Next.js", iconName: "nextjs" },
+      { name: "Node.js", iconName: "nodejs" },
+    ],
+  },
+  {
+    name: "Database",
+    icon: ServerCog,
+    skills: [
       { name: "SQL", iconName: "sql" },
+      { name: "PostgreSQL", iconName: "postgresql" },
+      { name: "Django", iconName: "django" },
+    ],
+  },
+  {
+    name: "Systems",
+    icon: Code,
+    skills: [
+      { name: "Linux", iconName: "linux" },
+      { name: "Ubuntu", iconName: "ubuntu" },
+      { name: "Windows", iconName: "windows" },
     ],
   },
   {
@@ -51,7 +79,7 @@ const skillsCategories = [
   },
   {
     name: "Design & CAD Tools",
-    icon: ServerCog,
+    icon: Cloud,
     skills: [
       { name: "SolidWorks", iconName: "solidworks" },
       { name: "Matlab", iconName: "matlab" },
@@ -60,27 +88,11 @@ const skillsCategories = [
     ],
   },
   {
-    name: "Web Development",
-    icon: WandSparkles,
-    skills: [
-      { name: "HTML", iconName: "html" },
-      { name: "CSS", iconName: "css" },
-      { name: "JavaScript", iconName: "javascript" },
-      { name: "Ubuntu Linux", iconName: "linux" },
-    ],
-  },
-  {
-    name: "Cloud & Tools",
-    icon: Cloud,
+    name: "Cloud & DevTools",
+    icon: Trophy,
     skills: [
       { name: "AWS", iconName: "aws" },
       { name: "Git", iconName: "git" },
-    ],
-  },
-  {
-    name: "Developer Tools",
-    icon: Code,
-    skills: [
       { name: "Cursor", iconName: "cursor" },
       { name: "MCP", iconName: "mcp" },
     ],
