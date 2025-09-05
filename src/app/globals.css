@@ -2,37 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom utilities for enhanced styling */
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-  
-  .text-pretty {
-    text-wrap: pretty;
-  }
-  
-  .bg-gradient-radial {
-    background: radial-gradient(ellipse at center, var(--background) 0%, var(--muted) 100%);
-  }
-  
-  .bg-gradient-conic {
-    background: conic-gradient(from 0deg at 50% 50%, var(--primary), var(--secondary), var(--primary));
-  }
-  
-  .backdrop-blur-soft {
-    backdrop-filter: blur(8px);
-  }
-  
-  .backdrop-blur-medium {
-    backdrop-filter: blur(12px);
-  }
-  
-  .backdrop-blur-strong {
-    backdrop-filter: blur(16px);
-  }
-}
-
 :root {
   --radius: 0.75rem; /* A bit more rounded for a softer look */
   --background: oklch(0.99 0.005 240); /* Lighter, cooler background */
@@ -69,29 +38,6 @@
   --sidebar-accent-foreground: oklch(0.22 0.04 255);
   --sidebar-border: oklch(0.9 0.01 240);
   --sidebar-ring: oklch(0.65 0.2 260);
-}
-
-/* Enhanced Light mode: Rich native blue background */
-:root {
-  --radius: 0.75rem;
-  --background: oklch(0.75 0.12 260); /* Deeper native blue base */
-  --foreground: oklch(0.95 0.02 240); /* High contrast white text */
-  --card: oklch(0.98 0.01 240); /* Soft white cards with subtle blue tint */
-  --card-foreground: oklch(0.18 0.06 255); /* Dark blue text on cards */
-  --popover: oklch(0.98 0.01 240);
-  --popover-foreground: oklch(0.18 0.06 255);
-  --primary: oklch(0.95 0.02 240); /* Light primary for contrast */
-  --primary-foreground: oklch(0.15 0.08 260); /* Dark blue for primary text */
-  --secondary: oklch(0.85 0.06 250); /* Blue-tinted secondary */
-  --secondary-foreground: oklch(0.18 0.06 255);
-  --muted: oklch(0.88 0.04 250); /* Muted blue background */
-  --muted-foreground: oklch(0.35 0.04 255); /* Readable muted text */
-  --accent: oklch(0.85 0.06 250);
-  --accent-foreground: oklch(0.18 0.06 255);
-  --destructive: oklch(0.65 0.22 25); /* Clear red for errors */
-  --border: oklch(0.68 0.08 260); /* Blue-tinted borders */
-  --input: oklch(0.95 0.02 240); /* Light input backgrounds */
-  --ring: oklch(0.95 0.04 240); /* Focus ring color */
 }
 
 .dark {
@@ -136,11 +82,51 @@
     @apply border-border outline-ring/50;
   }
   body {
-    /* Apply subtle gradient using background and muted variables */
-    @apply text-foreground; /* Keep apply for text color */
-    /* Set background properties directly */
-    background: linear-gradient(to bottom, oklch(from var(--background) l c h), oklch(from var(--muted) l c h / 0.1));
-    background-color: var(--background); /* Fallback */
+    @apply text-foreground;
+    /* Default system theme with starry mountain background */
+    background: url('/img/starry-mountain-bg.jpg') center center / cover no-repeat fixed,
+                linear-gradient(to bottom, var(--background), var(--muted));
+    background-color: var(--background);
+    position: relative;
+  }
+
+  /* Add overlay for better text readability in system theme */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(79, 70, 229, 0.70) 0%,
+      rgba(99, 102, 241, 0.60) 50%,
+      rgba(139, 92, 246, 0.65) 100%
+    );
+    backdrop-filter: blur(1px);
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  /* Light theme overrides */
+  body.light {
+    background: #F8FAFC !important;
+    background-image: none !important;
+  }
+
+  body.light::before {
+    display: none !important;
+  }
+
+  /* Dark theme overrides */
+  body.dark {
+    background: #1E293B !important;
+    background-image: none !important;
+  }
+
+  body.dark::before {
+    display: none !important;
   }
 }
 
@@ -381,227 +367,25 @@
     will-change: transform;
     backface-visibility: hidden;
   }
+}
 
-  /* Enhanced button styles */
-  .btn-primary {
-    @apply bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200;
-    box-shadow: 0 2px 8px var(--primary)/20;
-  }
+/* Simple text color improvements for better visibility */
+/* System theme with background image - white text with shadow */
+body h1, body h2, body h3, body h4, body h5, body h6 {
+  color: white !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
 
-  .btn-primary:hover {
-    box-shadow: 0 4px 12px var(--primary)/30;
-    transform: translateY(-1px);
-  }
+/* Light theme - black text */
+body.light h1, body.light h2, body.light h3, body.light h4, body.light h5, body.light h6,
+body.light p, body.light span, body.light div {
+  color: #000000 !important;
+  text-shadow: none !important;
+}
 
-  .btn-secondary {
-    @apply bg-secondary text-secondary-foreground hover:bg-secondary/80 transition-all duration-200;
-    border: 1px solid var(--border);
-  }
-
-  .btn-secondary:hover {
-    border-color: var(--primary);
-    box-shadow: 0 2px 8px var(--primary)/10;
-  }
-
-  /* Enhanced input styles */
-  .input-enhanced {
-    @apply bg-background border border-input text-foreground;
-    transition: all 0.2s ease-in-out;
-  }
-
-  .input-enhanced:focus {
-    @apply border-primary ring-2 ring-primary/20;
-    box-shadow: 0 0 0 3px var(--primary)/10;
-  }
-
-  /* Glass morphism effect */
-  .glass {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-  }
-
-  .dark .glass {
-    background: rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  /* Enhanced shadows */
-  .shadow-soft {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  }
-
-  .dark .shadow-soft {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  }
-
-  .shadow-glow {
-    box-shadow: 0 0 20px var(--primary)/20;
-  }
-
-  /* Text selection */
-  ::selection {
-    background: var(--primary);
-    color: var(--primary-foreground);
-  }
-
-  /* Scrollbar styling */
-  ::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: var(--muted);
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: var(--border);
-    border-radius: 4px;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: var(--primary);
-  }
-
-  /* Loading animation */
-  @keyframes pulse-glow {
-    0%, 100% {
-      opacity: 1;
-      transform: scale(1);
-    }
-    50% {
-      opacity: 0.8;
-      transform: scale(1.05);
-    }
-  }
-
-  .animate-pulse-glow {
-    animation: pulse-glow 2s ease-in-out infinite;
-  }
-
-  /* Enhanced hover effects */
-  .hover-lift {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .hover-lift:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-  }
-
-  .dark .hover-lift:hover {
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
-  }
-
-  /* Enhanced technical skills card styling */
-  .skills-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 1rem;
-    padding: 2rem;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    backdrop-filter: blur(10px);
-  }
-
-  .skills-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, var(--primary)/8, var(--secondary)/8);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: 1;
-  }
-
-  .skills-card:hover::before {
-    opacity: 1;
-  }
-
-  .skills-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 
-      0 20px 40px var(--primary)/15,
-      0 0 0 1px var(--primary)/20,
-      inset 0 1px 0 var(--primary)/20;
-    border-color: var(--primary)/40;
-  }
-
-  /* Enhanced skill item styling */
-  .skill-item {
-    background: var(--background)/60;
-    border: 1px solid var(--border)/50;
-    border-radius: 0.75rem;
-    padding: 0.75rem;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .skill-item::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, var(--primary)/10, transparent);
-    transition: left 0.5s ease;
-  }
-
-  .skill-item:hover::before {
-    left: 100%;
-  }
-
-  .skill-item:hover {
-    background: var(--card)/90;
-    border-color: var(--primary)/30;
-    transform: translateY(-2px) scale(1.05);
-    box-shadow: 0 8px 16px var(--primary)/10;
-  }
-
-  /* Enhanced icon container for skills */
-  .skill-icon-container {
-    width: 2.25rem;
-    height: 2.25rem;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 0.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .skill-icon-container::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    background: var(--primary)/20;
-    border-radius: 50%;
-    transition: all 0.3s ease;
-    transform: translate(-50%, -50%);
-  }
-
-  .skill-item:hover .skill-icon-container::after {
-    width: 100%;
-    height: 100%;
-  }
-
-  .skill-item:hover .skill-icon-container {
-    border-color: var(--primary);
-    transform: rotate(5deg) scale(1.1);
-  }
+/* Dark theme - white text */
+body.dark h1, body.dark h2, body.dark h3, body.dark h4, body.dark h5, body.dark h6,
+body.dark p, body.dark span, body.dark div {
+  color: #FFFFFF !important;
+  text-shadow: none !important;
 }

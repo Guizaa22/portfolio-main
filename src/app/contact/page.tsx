@@ -43,7 +43,8 @@ export default function ContactPage() {
         body: JSON.stringify(data),
       });
       if (res.ok) {
-        setSuccess('Message sent successfully!');
+        const result = await res.json();
+        setSuccess(result.message || 'Message sent successfully!');
         form.reset();
       } else {
         const result = await res.json();

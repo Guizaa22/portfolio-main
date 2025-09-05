@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ThemeToggle } from './ThemeToggle'; // Import ThemeToggle
+import { LanguageToggle } from './LanguageToggle'; // Import LanguageToggle
 
 export default function Header() {
   const pathname = usePathname();
@@ -30,11 +31,15 @@ export default function Header() {
           <Link href="/projects" className={getLinkClassName('/projects')}>
             Projects
           </Link>
+          <Link href="/feedback" className={getLinkClassName('/feedback')}>
+            Feedback
+          </Link>
           <Link href="/contact" className={getLinkClassName('/contact')}>
             Contact
           </Link>
         </nav>
         <div className="flex items-center space-x-2">
+          <LanguageToggle /> {/* Add the LanguageToggle component */}
           <ThemeToggle /> {/* Add the ThemeToggle component */}
         </div>
       </div>

@@ -1,8 +1,11 @@
+"use client";
+
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from "@/components/ui/button";
 import { Badge } from '@/components/ui/badge';
 import { ThemedIcon } from "@/components/ThemedIcon";
+import { useTranslation } from "@/hooks/useTranslation";
 import {
   Github,
   Linkedin,
@@ -123,6 +126,8 @@ const featuredProjects = [
 
 
 export default function Home() {
+  const { t } = useTranslation();
+  
   return (
     <div className="min-h-screen bg-gradient-to-br from-background to-muted/20">
       <div className="container mx-auto px-4 py-8 md:py-12">
@@ -143,13 +148,13 @@ export default function Home() {
           {/* Text Content */}
           <div className="text-center md:text-left flex-grow">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-3">
-              Mohamed Guizani
+              {t('hero.title')}
             </h1>
             <h2 className="text-xl sm:text-2xl md:text-3xl font-medium text-muted-foreground mb-6">
-              Senior Technical in Electronics
+              {t('hero.subtitle')}
             </h2>
             <p className="max-w-3xl text-base sm:text-lg text-muted-foreground mb-8">
-              Highly skilled and motivated Electronic Technical with expertise in automation, electrotechnics, and electronics. I specialize in designing innovative electronic solutions, IoT systems, and automotive testing equipment. Passionate about continuous learning and creating efficient, durable electronic systems.
+              {t('hero.description')}
             </p>
             <div className="flex justify-center md:justify-start items-center space-x-4">
               <Button asChild variant="outline" size="icon">
@@ -186,7 +191,7 @@ export default function Home() {
                     <Briefcase className="w-8 h-8" />
                   </div>
                   <div>
-                    <h3 className="text-2xl md:text-3xl font-bold text-foreground">Experience</h3>
+                    <h3 className="text-2xl md:text-3xl font-bold text-foreground">{t('experience.title')}</h3>
                     <p className="text-muted-foreground">Professional work history</p>
                   </div>
                 </div>
@@ -238,7 +243,7 @@ export default function Home() {
                     <Trophy className="w-8 h-8" />
                   </div>
                   <div>
-                    <h3 className="text-2xl md:text-3xl font-bold text-foreground">Projects</h3>
+                    <h3 className="text-2xl md:text-3xl font-bold text-foreground">{t('projects.title')}</h3>
                     <p className="text-muted-foreground">Full stack, AI hackathons & publications</p>
                   </div>
                 </div>
@@ -287,7 +292,7 @@ export default function Home() {
         {/* Skills Section - Enhanced Design */}
         <section id="skills" className="mb-12 md:mb-16">
           <h2 className="text-3xl font-bold text-center mb-6 md:mb-8 text-foreground">
-            Technical Skills
+            {t('skills.title')}
           </h2>
           
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
@@ -339,20 +344,20 @@ export default function Home() {
             <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full mb-6">
               <Users className="w-8 h-8 text-white" />
             </div>
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">Ready to Work Together?</h2>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">{t('cta.title')}</h2>
             <p className="text-muted-foreground mb-6">
-              I&apos;m passionate about solving complex electronic problems and building innovative IoT solutions. Let&apos;s create something amazing together!
+              {t('cta.description')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" asChild>
                 <Link href="/contact">
-                  Get In Touch
+                  {t('cta.contact')}
                   <ExternalLink className="w-4 h-4 ml-2" />
                 </Link>
               </Button>
               <Button size="lg" variant="outline" asChild>
                 <Link href="mailto:hama.guizeni842@gmail.com">
-                  Send Email
+                  {t('cta.email')}
                   <ExternalLink className="w-4 h-4 ml-2" />
                 </Link>
               </Button>
