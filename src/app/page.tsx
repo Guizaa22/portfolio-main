@@ -34,8 +34,10 @@ const skillsCategories = [
     icon: CodeXml,
     skills: [
       { name: "Python", iconName: "python" },
-      { name: "C/C++", iconName: "c" },
+      { name: "C Programming", iconName: "c" },
+      { name: "C++ Programming", iconName: "c++" },
       { name: "Java", iconName: "java" },
+      { name: "Angular", iconName: "angularjs" },
     ],
   },
   {
@@ -85,6 +87,8 @@ const skillsCategories = [
       { name: "Matlab", iconName: "matlab" },
       { name: "Xilinx ISE", iconName: "xilinx" },
       { name: "Quartus", iconName: "quartus" },
+      { name: "Proteus ISIS", iconName: "proteus" },
+
     ],
   },
   {
