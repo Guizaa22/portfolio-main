@@ -1,0 +1,678 @@
+/* stylelint-disable at-rule-no-unknown */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* stylelint-enable at-rule-no-unknown */
+
+:root {
+  --radius: 0.75rem;
+
+  /* Light mode — Teal palette
+     003135 · 024950 · 964734 · 0FA4AF · AFDDE5 */
+  --background: 240 249 250; /* light teal-white */
+  --foreground: 0 49 53; /* 003135 deep teal */
+  --card: 255 255 255; /* pure white */
+  --card-foreground: 0 49 53;
+  --popover: 255 255 255;
+  --popover-foreground: 0 49 53;
+  --primary: 2 73 80; /* 024950 deep teal */
+  --primary-foreground: 255 255 255;
+  --secondary: 175 221 229; /* AFDDE5 powder blue */
+  --secondary-foreground: 0 49 53;
+  --muted: 224 242 245; /* light teal-gray */
+  --muted-foreground: 51 90 95;
+  --accent: 150 71 52; /* 964734 rust accent */
+  --accent-foreground: 255 255 255;
+  --destructive: 190 60 48;
+  --destructive-foreground: 255 255 255;
+  --border: 197 224 228; /* soft teal border */
+  --input: 197 224 228;
+  --ring: 15 164 175; /* 0FA4AF cyan */
+
+  /* Chart colors */
+  --chart-1: 15 164 175;
+  --chart-2: 2 73 80;
+  --chart-3: 150 71 52;
+  --chart-4: 34 197 94;
+  --chart-5: 249 115 22;
+
+  /* Sidebar colors */
+  --sidebar: 234 246 248;
+  --sidebar-foreground: 0 49 53;
+  --sidebar-primary: 2 73 80;
+  --sidebar-primary-foreground: 255 255 255;
+  --sidebar-accent: 175 221 229;
+  --sidebar-accent-foreground: 0 49 53;
+  --sidebar-border: 197 224 228;
+  --sidebar-ring: 15 164 175;
+}
+
+.dark {
+  /* Dark mode — deep teal variant of the palette */
+  --background: 0 25 28; /* near-black teal */
+  --foreground: 224 244 246; /* soft light */
+  --card: 0 41 45; /* dark teal card */
+  --card-foreground: 224 244 246;
+  --popover: 0 41 45;
+  --popover-foreground: 224 244 246;
+  --primary: 15 164 175; /* 0FA4AF bright cyan */
+  --primary-foreground: 0 25 28;
+  --secondary: 2 73 80; /* 024950 */
+  --secondary-foreground: 175 221 229;
+  --muted: 2 56 61;
+  --muted-foreground: 138 184 189;
+  --accent: 197 95 70; /* lighter rust for dark */
+  --accent-foreground: 0 25 28;
+  --destructive: 230 110 95;
+  --destructive-foreground: 0 25 28;
+  --border: 6 71 77;
+  --input: 6 71 77;
+  --ring: 15 164 175;
+
+  /* Chart colors for dark theme */
+  --chart-1: 15 164 175;
+  --chart-2: 95 209 217;
+  --chart-3: 197 95 70;
+  --chart-4: 74 222 128;
+  --chart-5: 251 146 60;
+
+  /* Sidebar colors for dark theme */
+  --sidebar: 0 25 28;
+  --sidebar-foreground: 175 221 229;
+  --sidebar-primary: 15 164 175;
+  --sidebar-primary-foreground: 0 25 28;
+  --sidebar-accent: 2 73 80;
+  --sidebar-accent-foreground: 224 244 246;
+  --sidebar-border: 6 71 77;
+  --sidebar-ring: 15 164 175;
+}
+
+/* ============================================================
+   Explicit theme choices (data-mode written by ThemeSync)
+     light  -> starry night-sky background ("night" light mode)
+     dark   -> hacker colours (black + neon green)
+     system -> NO override; falls back to :root / .dark teal palette
+   ============================================================ */
+
+/* LIGHT = starry sky background + light text */
+html[data-mode="light"] {
+  --background: 14 18 34;        /* night blue */
+  --foreground: 233 239 255;
+  --card: 22 27 48;
+  --card-foreground: 233 239 255;
+  --popover: 22 27 48;
+  --popover-foreground: 233 239 255;
+  --muted: 30 36 60;
+  --muted-foreground: 186 196 226;
+  --accent: 15 164 175;
+  --accent-foreground: 8 12 24;
+  --border: 56 64 102;
+  --input: 56 64 102;
+  --primary: 56 189 248;         /* sky cyan */
+  --primary-foreground: 8 12 24;
+  --secondary: 36 43 72;
+  --secondary-foreground: 217 225 255;
+  --ring: 56 189 248;
+}
+
+html[data-mode="light"] body {
+  background:
+    linear-gradient(rgba(8, 11, 26, 0.45), rgba(8, 11, 26, 0.7)),
+    url('/img/backgroundlightmode.jpg') center top / cover no-repeat fixed;
+}
+
+/* reveal the starry background through the top-level page wrapper */
+html[data-mode="light"] main > div {
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+/* DARK = hacker colours (matrix rain stays only on Projects > Security) */
+html[data-mode="dark"] {
+  --background: 2 6 10;          /* near black */
+  --foreground: 210 255 232;
+  --card: 6 18 13;
+  --card-foreground: 210 255 232;
+  --popover: 6 18 13;
+  --popover-foreground: 210 255 232;
+  --muted: 10 28 20;
+  --muted-foreground: 122 200 162;
+  --accent: 0 230 138;
+  --accent-foreground: 2 6 10;
+  --border: 0 70 45;
+  --input: 0 70 45;
+  --primary: 0 230 138;          /* neon green */
+  --primary-foreground: 2 6 10;
+  --secondary: 8 36 26;
+  --secondary-foreground: 200 255 220;
+  --ring: 0 230 138;
+}
+
+@layer base {
+  * {
+    border-color: rgb(var(--border));
+  }
+
+  body {
+    background-color: rgb(var(--background));
+    color: rgb(var(--foreground));
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  /* stylelint-disable at-rule-no-unknown */
+  /* Navigation Link Styles */
+  .nav-link-active {
+    @apply text-sm font-medium transition-colors;
+    color: rgb(var(--foreground));
+  }
+  
+  .nav-link-active:hover {
+    color: rgb(var(--primary));
+  }
+  
+  .nav-link-inactive {
+    @apply text-sm font-medium transition-colors;
+    color: rgb(var(--muted-foreground));
+  }
+  
+  .nav-link-inactive:hover {
+    color: rgb(var(--primary));
+  }
+
+  /* Enhanced technical skills card styling */
+  .skills-card {
+    @apply bg-card border border-border rounded-xl p-6 transition-all duration-300 hover:shadow-lg hover:border-primary/40;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgb(var(--card)) 0%, rgb(var(--muted)) 100%);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgb(var(--border) / 0.5);
+  }
+
+  .skills-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgb(var(--primary) / 0.15);
+    border-color: rgb(var(--primary) / 0.6);
+  }
+
+  .skill-item {
+    @apply flex items-center space-x-3 p-3 rounded-lg transition-all duration-200;
+    background: rgb(var(--background) / 0.6);
+    backdrop-filter: blur(5px);
+  }
+
+  .skill-item:hover {
+    background: rgb(var(--primary) / 0.1);
+    transform: translateX(4px);
+  }
+
+  .skill-icon-container {
+    @apply w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-200;
+    background: rgb(var(--primary) / 0.1);
+    border: 1px solid rgb(var(--primary) / 0.2);
+  }
+
+  .skill-icon-container:hover {
+    background: rgb(var(--primary) / 0.2);
+    transform: rotate(5deg) scale(1.1);
+    border-color: rgb(var(--primary) / 0.4);
+  }
+
+  /* Icon container enhancements */
+  .icon-container-enhanced {
+    background: rgb(var(--card));
+    border: 1px solid rgb(var(--border));
+    backdrop-filter: blur(8px);
+    transition: all 0.2s ease-in-out;
+  }
+
+  .icon-container-enhanced:hover {
+    background: rgb(var(--card));
+    border-color: rgb(var(--primary));
+    box-shadow: 0 4px 12px rgb(var(--primary) / 0.1);
+    transform: translateY(-1px);
+  }
+
+  /* Themed icon styles */
+  .themed-icon {
+    transition: all 0.2s ease-in-out;
+  }
+
+  .themed-icon:hover {
+    transform: scale(1.1);
+  }
+
+  /* Status Badge Styles */
+  .badge-success {
+    @apply bg-green-50 text-green-700 border-green-200;
+  }
+  
+  .dark .badge-success {
+    @apply bg-green-500/10 text-green-400 border-green-500/20;
+  }
+  
+  .badge-info {
+    @apply bg-blue-50 text-blue-700 border-blue-200;
+  }
+  
+  .dark .badge-info {
+    @apply bg-blue-500/10 text-blue-400 border-blue-500/20;
+  }
+  
+  .badge-warning {
+    @apply bg-orange-50 text-orange-700 border-orange-200;
+  }
+  
+  .dark .badge-warning {
+    @apply bg-orange-500/10 text-orange-400 border-orange-500/20;
+  }
+  
+  .badge-highlight {
+    @apply bg-emerald-50 text-emerald-700 border-emerald-200;
+  }
+  
+  .dark .badge-highlight {
+    @apply bg-emerald-500/10 text-emerald-400 border-emerald-500/20;
+  }
+
+  .badge-prize {
+    @apply bg-gradient-to-r from-yellow-400 to-orange-500 text-white border-0;
+  }
+  
+  .dark .badge-prize {
+    @apply bg-gradient-to-r from-yellow-500 to-orange-600 text-white border-0;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    background: linear-gradient(to right, rgb(var(--foreground)), rgb(var(--primary)), rgb(var(--foreground)));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Animations */
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in-right {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-in-left {
+    from {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slide-in-right {
+    from {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes gradient-shift {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  /* Animation utility classes */
+  .animate-fade-in-up {
+    animation: fade-in-up 0.6s ease-out;
+  }
+
+  .animate-fade-in-right {
+    animation: fade-in-right 0.5s ease-out;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.8s ease-out;
+  }
+
+  .animate-slide-in-left {
+    animation: slide-in-left 0.8s ease-out;
+  }
+
+  .animate-slide-in-right {
+    animation: slide-in-right 0.8s ease-out;
+  }
+
+  .animate-gradient-shift {
+    background-size: 200% 200%;
+    animation: gradient-shift 3s ease infinite;
+  }
+
+  /* Smooth scroll */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Focus states for accessibility */
+  *:focus-visible {
+    outline: 2px solid rgb(var(--primary));
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Enhanced feedback card hover effects */
+  .feedback-card {
+    @apply bg-card border border-border rounded-xl p-6 transition-all duration-300 cursor-pointer;
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgb(var(--border) / 0.1);
+  }
+
+  .feedback-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgb(var(--primary) / 0.15), 0 8px 16px rgb(var(--border) / 0.2);
+    border-color: rgb(var(--primary) / 0.3);
+    background: linear-gradient(135deg, rgb(var(--card)) 0%, rgb(var(--muted) / 0.3) 100%);
+  }
+
+  .feedback-card:hover .testimonial-quote {
+    color: rgb(var(--primary));
+  }
+
+  .feedback-card:hover .client-name {
+    color: rgb(var(--primary));
+  }
+
+  /* Performance optimizations */
+  .card {
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+  
+  .card:hover {
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+  /* stylelint-enable at-rule-no-unknown */
+}
+
+/* RTL Support */
+[dir="rtl"] {
+  text-align: right;
+}
+
+[dir="rtl"] .space-x-2 > * + * {
+  margin-left: 0;
+  margin-right: 0.5rem;
+}
+
+/* ============================================================
+   Full-screen scroll-snap "windows" (home page only, via .home-snap)
+   ============================================================ */
+html.home-snap {
+  scroll-snap-type: y proximity;
+  scroll-padding-top: 3.5rem; /* clears the sticky header */
+  scroll-behavior: smooth;
+}
+
+.snap-section {
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.home-snap {
+    scroll-snap-type: none;
+    scroll-behavior: auto;
+  }
+}
+
+/* ============================================================
+   Scroll-reveal animations (IntersectionObserver driven)
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-left {
+  transform: translateX(-40px);
+}
+
+.reveal-right {
+  transform: translateX(40px);
+}
+
+.reveal-scale {
+  transform: scale(0.92);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* 3D tilt / lift card */
+.tilt-card {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+  transform-style: preserve-3d;
+}
+
+/* ============================================================
+   Per-category themed backgrounds (projects page)
+   Each theme overrides the CSS color variables so every Tailwind
+   utility (bg-card, text-foreground, bg-primary, …) re-themes itself.
+   ============================================================ */
+.fx-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.projects-theme {
+  position: relative;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.projects-theme .projects-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Security — hacker / matrix (neon green) */
+.theme-security {
+  --background: 2 6 10;
+  --foreground: 210 255 232;
+  --card: 6 18 13;
+  --card-foreground: 210 255 232;
+  --popover: 6 18 13;
+  --popover-foreground: 210 255 232;
+  --muted: 10 28 20;
+  --muted-foreground: 122 200 162;
+  --accent: 0 230 138;
+  --accent-foreground: 2 6 10;
+  --border: 0 70 45;
+  --input: 0 70 45;
+  --primary: 0 230 138;
+  --primary-foreground: 2 6 10;
+  --secondary: 8 36 26;
+  --secondary-foreground: 200 255 220;
+  --ring: 0 230 138;
+}
+.theme-security .fx-canvas { opacity: 0.32; }
+
+/* Embedded — electronics / PCB (amber + green) */
+.theme-embedded {
+  --background: 8 7 3;
+  --foreground: 255 238 204;
+  --card: 22 16 6;
+  --card-foreground: 255 238 204;
+  --popover: 22 16 6;
+  --popover-foreground: 255 238 204;
+  --muted: 30 21 8;
+  --muted-foreground: 214 184 130;
+  --accent: 255 176 32;
+  --accent-foreground: 20 14 4;
+  --border: 92 62 18;
+  --input: 92 62 18;
+  --primary: 255 176 32;
+  --primary-foreground: 20 14 4;
+  --secondary: 42 29 10;
+  --secondary-foreground: 255 226 170;
+  --ring: 255 176 32;
+}
+.theme-embedded .fx-canvas { opacity: 0.4; }
+
+/* Full Stack — developer / code editor (indigo + cyan) */
+.theme-fullstack {
+  --background: 9 11 20;
+  --foreground: 224 231 255;
+  --card: 17 20 34;
+  --card-foreground: 224 231 255;
+  --popover: 17 20 34;
+  --popover-foreground: 224 231 255;
+  --muted: 24 28 46;
+  --muted-foreground: 158 168 214;
+  --accent: 56 189 248;
+  --accent-foreground: 9 11 20;
+  --border: 49 54 92;
+  --input: 49 54 92;
+  --primary: 99 102 241;
+  --primary-foreground: 245 247 255;
+  --secondary: 30 35 60;
+  --secondary-foreground: 200 208 255;
+  --ring: 56 189 248;
+}
+.theme-fullstack .fx-canvas { opacity: 0.3; }
+
+/* ============================================================
+   Hacker / cybersecurity theme  (scoped to .hacker-theme)
+   ============================================================ */
+.hacker-theme {
+  --neon: 0 255 153; /* matrix green */
+  --neon-cyan: 0 229 255;
+  background: #02060a;
+  color: rgb(210 255 232);
+  font-family: var(--font-geist-mono), ui-monospace, "SF Mono", "Fira Code", monospace;
+  position: relative;
+}
+
+.hacker-theme .matrix-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.hacker-theme .hacker-content {
+  position: relative;
+  z-index: 1;
+}
+
+.hacker-theme .neon-text {
+  color: rgb(var(--neon));
+  text-shadow: 0 0 8px rgba(0, 255, 153, 0.6), 0 0 22px rgba(0, 255, 153, 0.3);
+}
+
+.hacker-theme .neon-cyan {
+  color: rgb(var(--neon-cyan));
+  text-shadow: 0 0 8px rgba(0, 229, 255, 0.55), 0 0 22px rgba(0, 229, 255, 0.28);
+}
+
+.hacker-theme .hacker-card {
+  background: rgba(4, 18, 14, 0.72);
+  border: 1px solid rgba(0, 255, 153, 0.22);
+  backdrop-filter: blur(6px);
+  border-radius: 0.75rem;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.hacker-theme .hacker-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(0, 255, 153, 0.6);
+  box-shadow: 0 0 0 1px rgba(0, 255, 153, 0.25), 0 18px 50px rgba(0, 255, 153, 0.18);
+}
+
+.hacker-theme .hacker-chip {
+  background: rgba(0, 255, 153, 0.08);
+  border: 1px solid rgba(0, 255, 153, 0.3);
+  color: rgb(140 255 200);
+}
+
+.hacker-theme .hacker-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 153, 0.5), transparent);
+}
+
+/* blinking terminal cursor */
+@keyframes blink-caret {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.caret::after {
+  content: "_";
+  margin-left: 2px;
+  animation: blink-caret 1s step-end infinite;
+  color: rgb(var(--neon));
+}
