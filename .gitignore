@@ -63,3 +63,7 @@ next-env.d.ts
 *.Zone.Identifier
 -remote --heads origin
 src/app/globals.css.backup
+
+# Keep downloadable CV / cover letter in public (override *.pdf rule above)
+!public/Mohamed_Guizani_CV.pdf
+!public/Mohamed_Guizani_Cover_Letter.pdf

@@ -24,6 +24,9 @@ import {
   Briefcase,
   Sparkles,
   Blocks,
+  FileText,
+  X,
+  CheckCircle2,
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -48,6 +51,8 @@ type PortfolioItem = {
   team?: string;
   link?: string;
   liveUrl?: string;
+  /** Optional presentation / report (PDF in /public) shown in the details modal. */
+  detailsUrl?: string;
 };
 
 const projectsData: PortfolioItem[] = [
@@ -407,6 +412,7 @@ const VALID_CATEGORIES = ['all', 'fullstack', 'security', 'embedded'];
 
 export default function ProjectsPage() {
   const [activeCategory, setActiveCategory] = useState<string>('all');
+  const [selected, setSelected] = useState<PortfolioItem | null>(null);
 
   // Allow deep-linking to a category via URL hash, e.g. /projects#security
   useEffect(() => {
@@ -624,8 +630,12 @@ export default function ProjectsPage() {
 
                   {/* Action */}
                   <div className="space-y-3">
+                    <Button className="w-full" onClick={() => setSelected(project)}>
+                      <FileText className="w-4 h-4 mr-2" />
+                      View Project Details
+                    </Button>
                     {project.link && (
-                      <Button asChild className="w-full">
+                      <Button asChild variant="outline" className="w-full">
                         <Link href={project.link} target="_blank" rel="noopener noreferrer">
                           <ExternalLink className="w-4 h-4 mr-2" />
                           View Source Code
@@ -633,7 +643,7 @@ export default function ProjectsPage() {
                       </Button>
                     )}
                     {project.liveUrl && (
-                      <Button asChild className="w-full">
+                      <Button asChild variant="outline" className="w-full">
                         <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer">
                           <ExternalLink className="w-4 h-4 mr-2" />
                           View Live Demo
@@ -673,6 +683,106 @@ export default function ProjectsPage() {
           </div>
         </div>
       </div>
+
+      {/* Project Details Modal */}
+      {selected && (
+        <div
+          className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
+          onClick={() => setSelected(null)}
+        >
+          <div
+            className="relative w-full max-w-2xl max-h-[86vh] overflow-y-auto rounded-2xl bg-card border border-border shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setSelected(null)}
+              aria-label="Close details"
+              className="absolute top-4 right-4 p-2 rounded-lg hover:bg-muted text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <div className="p-6 md:p-8">
+              {/* Header */}
+              <div className="flex items-start gap-4 mb-5 pr-10">
+                <div className="p-3 rounded-xl bg-primary/10 text-primary">
+                  <selected.icon className="w-6 h-6" />
+                </div>
+                <div>
+                  <div className="mb-2">
+                    <span className={`text-[11px] px-2 py-0.5 rounded border font-medium ${categoryAccent[selected.category]}`}>
+                      {categoryLabel[selected.category]}
+                    </span>
+                  </div>
+                  <h3 className="text-2xl font-bold text-foreground leading-tight">{selected.title}</h3>
+                  <p className="text-primary font-semibold text-sm mt-1">{selected.subtitle}</p>
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground mt-1">
+                    <Calendar className="w-3 h-3" />
+                    <span>{selected.period}</span><span>•</span><span>{selected.impact}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Metrics */}
+              <div className="grid grid-cols-3 gap-3 mb-5 p-4 bg-muted/30 rounded-xl">
+                {selected.metrics.map((m) => (
+                  <div key={m.label} className="text-center">
+                    <div className="text-base font-bold text-primary">{m.value}</div>
+                    <div className="text-[11px] uppercase tracking-wide text-muted-foreground">{m.label}</div>
+                  </div>
+                ))}
+              </div>
+
+              <p className="text-muted-foreground text-sm leading-relaxed mb-5">{selected.description}</p>
+
+              <div className="mb-5">
+                <h4 className="text-sm font-semibold text-foreground mb-3">What I did</h4>
+                <ul className="space-y-2">
+                  {selected.highlights.map((h, i) => (
+                    <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                      <CheckCircle2 className="w-4 h-4 mt-0.5 flex-shrink-0 text-primary" />
+                      <span>{h}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="mb-5">
+                <h4 className="text-sm font-semibold text-foreground mb-2">Tech &amp; Tools</h4>
+                <div className="flex flex-wrap gap-2">
+                  {selected.skills.map((s) => (
+                    <Badge key={s} variant="outline" className="text-xs">{s}</Badge>
+                  ))}
+                </div>
+              </div>
+
+              {selected.team && (
+                <p className="text-xs text-muted-foreground mb-5">
+                  <span className="font-semibold text-foreground">Team:</span> {selected.team}
+                </p>
+              )}
+
+              <div className="flex flex-col sm:flex-row gap-3">
+                {selected.detailsUrl && (
+                  <Button asChild className="flex-1">
+                    <a href={selected.detailsUrl} target="_blank" rel="noopener noreferrer">
+                      <FileText className="w-4 h-4 mr-2" /> Open Presentation
+                    </a>
+                  </Button>
+                )}
+                {selected.link && (
+                  <Button asChild variant="outline" className="flex-1">
+                    <a href={selected.link} target="_blank" rel="noopener noreferrer">
+                      <ExternalLink className="w-4 h-4 mr-2" /> View Source Code
+                    </a>
+                  </Button>
+                )}
+                <Button variant="ghost" onClick={() => setSelected(null)} className="sm:w-auto">Close</Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

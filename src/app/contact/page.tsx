@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Github, Linkedin, Mail } from 'lucide-react';
+import { Github, Linkedin, Mail, Download, FileText } from 'lucide-react';
 import { useState } from 'react';
 
 // Note: Metadata export might need adjustment if 'use client' is strictly required at the top level.
@@ -85,6 +85,28 @@ export default function ContactPage() {
               <Github className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
               <span className="text-muted-foreground group-hover:text-primary transition-colors">GitHub</span>
             </Link>
+          </div>
+
+          {/* Resume / CV downloads */}
+          <div className="pt-4 border-t border-border/60 space-y-3">
+            <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">Résumé</h3>
+            <p className="text-sm text-muted-foreground">
+              Download my full CV — all projects, skills and experience in one professional document.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Button asChild>
+                <a href="/Mohamed_Guizani_CV.pdf" download>
+                  <Download className="h-4 w-4 mr-2" />
+                  Download CV (PDF)
+                </a>
+              </Button>
+              <Button asChild variant="outline">
+                <a href="/Mohamed_Guizani_Cover_Letter.pdf" download>
+                  <FileText className="h-4 w-4 mr-2" />
+                  Motivation Letter
+                </a>
+              </Button>
+            </div>
           </div>
         </div>
 

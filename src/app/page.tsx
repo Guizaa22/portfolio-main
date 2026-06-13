@@ -14,7 +14,6 @@ import {
   Mail,
   CodeXml, // Icon for Programming Languages
   BrainCircuit, // Icon for Electronics & IoT
-  ServerCog, // Icon for Database
   Cloud, // Icon for Design & CAD
   WandSparkles, // Icon for Web Dev
   Trophy,
@@ -28,7 +27,10 @@ import {
   Users,
   Briefcase,
   ShieldCheck,
-  ChevronDown
+  ChevronDown,
+  Database,
+  Network,
+  Server
 } from 'lucide-react';
 
 // Enhanced Skills Data with better organization and balance
@@ -38,53 +40,80 @@ const skillsCategories = [
     icon: CodeXml,
     skills: [
       { name: "Python", iconName: "python" },
-      { name: "C Programming", iconName: "c" },
-      { name: "C++ Programming", iconName: "c++" },
+      { name: "C", iconName: "c" },
+      { name: "C++", iconName: "c++" },
       { name: "Java", iconName: "java" },
-      { name: "Angular", iconName: "angularjs" },
+      { name: "PHP", iconName: "php" },
+      { name: "Solidity", iconName: "solidity" },
+      { name: "JavaScript", iconName: "javascript" },
+      { name: "TypeScript", iconName: "typescript" },
     ],
   },
   {
-    name: "Web Development",
+    name: "Web & Frameworks",
     icon: WandSparkles,
     skills: [
+      { name: "React", iconName: "react" },
+      { name: "Next.js", iconName: "nextjs" },
+      { name: "Angular", iconName: "angularjs" },
+      { name: "Node.js", iconName: "nodejs" },
+      { name: "FastAPI", iconName: "fastapi" },
+      { name: "Spring Boot", iconName: "springboot" },
+      { name: "Symfony", iconName: "symfony" },
+      { name: "Django", iconName: "django" },
       { name: "HTML", iconName: "html" },
       { name: "CSS", iconName: "css" },
-      { name: "JavaScript", iconName: "javascript" },
-      { name: "Next.js", iconName: "nextjs" },
-      { name: "Node.js", iconName: "nodejs" },
     ],
   },
   {
-    name: "Database",
-    icon: ServerCog,
+    name: "Databases",
+    icon: Database,
     skills: [
-      { name: "SQL", iconName: "sql" },
       { name: "PostgreSQL", iconName: "postgresql" },
-      { name: "Django", iconName: "django" },
+      { name: "MySQL", iconName: "mysql" },
+      { name: "MongoDB", iconName: "mongodb" },
+      { name: "Oracle", iconName: "oracle" },
+      { name: "SQL", iconName: "sql" },
     ],
   },
   {
-    name: "Systems",
-    icon: Code,
-    skills: [
-      { name: "Linux", iconName: "linux" },
-      { name: "Ubuntu", iconName: "ubuntu" },
-      { name: "Windows", iconName: "windows" },
-    ],
-  },
-  {
-    name: "Network & Security",
+    name: "Security & SOC",
     icon: ShieldCheck,
     skills: [
+      { name: "Burp Suite", iconName: "burpsuite" },
+      { name: "Nmap", iconName: "nmap" },
+      { name: "Wireshark", iconName: "wireshark" },
+      { name: "hashcat", iconName: "hashcat" },
+      { name: "Wazuh", iconName: "wazuh" },
+      { name: "TheHive", iconName: "thehive" },
+      { name: "Cortex", iconName: "cortex" },
+      { name: "Shuffle", iconName: "shuffle" },
+      { name: "MITRE ATT&CK", iconName: "mitre" },
+    ],
+  },
+  {
+    name: "Networking",
+    icon: Network,
+    skills: [
+      { name: "Cisco", iconName: "cisco" },
       { name: "GNS3", iconName: "gns3" },
       { name: "EVE-NG", iconName: "eve-ng" },
-      { name: "Cisco", iconName: "cisco" },
-      { name: "Wireshark", iconName: "wireshark" },
-      { name: "Nmap", iconName: "nmap" },
-      { name: "Burp Suite", iconName: "burpsuite" },
-      { name: "Wazuh", iconName: "wazuh" },
+      { name: "MPLS", iconName: "mpls" },
+      { name: "OSPF", iconName: "ospf" },
+      { name: "Zabbix", iconName: "zabbix" },
+    ],
+  },
+  {
+    name: "Systems & DevOps",
+    icon: Server,
+    skills: [
+      { name: "Linux", iconName: "linux" },
       { name: "Kali Linux", iconName: "kali" },
+      { name: "Ubuntu", iconName: "ubuntu" },
+      { name: "Windows", iconName: "windows" },
+      { name: "Docker", iconName: "docker" },
+      { name: "Git", iconName: "git" },
+      { name: "AWS", iconName: "aws" },
     ],
   },
   {
@@ -106,16 +135,6 @@ const skillsCategories = [
       { name: "Xilinx ISE", iconName: "xilinx" },
       { name: "Quartus", iconName: "quartus" },
       { name: "Proteus ISIS", iconName: "proteus" },
-    ],
-  },
-  {
-    name: "Cloud & DevTools",
-    icon: Trophy,
-    skills: [
-      { name: "AWS", iconName: "aws" },
-      { name: "Git", iconName: "git" },
-      { name: "Cursor", iconName: "cursor" },
-      { name: "MCP", iconName: "mcp" },
     ],
   },
 ];
