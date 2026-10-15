@@ -127,25 +127,28 @@ html[data-mode="light"] main > div {
   background-image: none !important;
 }
 
-/* DARK = hacker colours (matrix rain stays only on Projects > Security) */
+/* DARK = armored look: ink blue-black, bone text, signal red (taken from the hero suit).
+   The Projects page keeps its own per-category themes (.theme-security etc.). */
 html[data-mode="dark"] {
-  --background: 2 6 10;          /* near black */
-  --foreground: 210 255 232;
-  --card: 6 18 13;
-  --card-foreground: 210 255 232;
-  --popover: 6 18 13;
-  --popover-foreground: 210 255 232;
-  --muted: 10 28 20;
-  --muted-foreground: 122 200 162;
-  --accent: 0 230 138;
-  --accent-foreground: 2 6 10;
-  --border: 0 70 45;
-  --input: 0 70 45;
-  --primary: 0 230 138;          /* neon green */
-  --primary-foreground: 2 6 10;
-  --secondary: 8 36 26;
-  --secondary-foreground: 200 255 220;
-  --ring: 0 230 138;
+  --background: 11 13 18;        /* ink */
+  --foreground: 232 230 225;     /* bone */
+  --card: 19 22 30;
+  --card-foreground: 232 230 225;
+  --popover: 19 22 30;
+  --popover-foreground: 232 230 225;
+  --muted: 27 31 41;
+  --muted-foreground: 142 149 166;
+  --accent: 233 53 46;
+  --accent-foreground: 255 246 244;
+  --destructive: 255 107 87;
+  --destructive-foreground: 20 8 6;
+  --border: 40 45 58;
+  --input: 40 45 58;
+  --primary: 233 53 46;          /* signal red */
+  --primary-foreground: 255 246 244;
+  --secondary: 33 37 48;
+  --secondary-foreground: 232 230 225;
+  --ring: 233 53 46;
 }
 
 @layer base {
@@ -157,6 +160,10 @@ html[data-mode="dark"] {
     background-color: rgb(var(--background));
     color: rgb(var(--foreground));
     font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  h1, h2, h3 {
+    letter-spacing: -0.015em;
   }
 }
 
@@ -449,27 +456,6 @@ html[data-mode="dark"] {
 }
 
 /* ============================================================
-   Full-screen scroll-snap "windows" (home page only, via .home-snap)
-   ============================================================ */
-html.home-snap {
-  scroll-snap-type: y proximity;
-  scroll-padding-top: 3.5rem; /* clears the sticky header */
-  scroll-behavior: smooth;
-}
-
-.snap-section {
-  scroll-snap-align: start;
-  scroll-snap-stop: normal;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html.home-snap {
-    scroll-snap-type: none;
-    scroll-behavior: auto;
-  }
-}
-
-/* ============================================================
    Scroll-reveal animations (IntersectionObserver driven)
    ============================================================ */
 .reveal {
@@ -675,4 +661,82 @@ html.home-snap {
   margin-left: 2px;
   animation: blink-caret 1s step-end infinite;
   color: rgb(var(--neon));
+}
+
+/* ============================================================
+   Smooth scroll (Lenis)
+   ============================================================ */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* ============================================================
+   Display type: Archivo with its width axis (condensed, heavy)
+   ============================================================ */
+.display-condensed {
+  font-family: var(--font-archivo), system-ui, sans-serif;
+  font-weight: 800;
+  font-variation-settings: "wdth" 62;
+  font-stretch: 62%;
+  letter-spacing: -0.02em;
+  line-height: 0.82;
+  text-transform: uppercase;
+}
+
+.display-wide {
+  font-family: var(--font-archivo), system-ui, sans-serif;
+  font-weight: 700;
+  font-variation-settings: "wdth" 112;
+  font-stretch: 112%;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+}
+
+/* ============================================================
+   First-visit loader. The head script sets data-seen when the
+   session has already shown it, so repeat visits never flash it.
+   ============================================================ */
+html[data-seen="1"] .site-loader {
+  display: none;
+}
+
+/* ============================================================
+   Hero scan line over the unmasked face
+   ============================================================ */
+@keyframes scan-sweep {
+  0% { transform: translateY(-110%); }
+  100% { transform: translateY(110%); }
+}
+
+@keyframes eye-flicker {
+  0%, 100% { opacity: 1; }
+  46% { opacity: 1; }
+  48% { opacity: 0.25; }
+  52% { opacity: 1; }
+  80% { opacity: 0.6; }
+}
+
+.eye-glow {
+  animation: eye-flicker 5.5s steps(1, end) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eye-glow { animation: none; }
+}
+
+/* Hide the scrollbar on horizontal strips (they scroll with wheel, drag, touch and arrows). */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
