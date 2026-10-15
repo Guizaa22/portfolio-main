@@ -20,7 +20,7 @@ const translations = {
   en: {
     'hero.title': 'Mohamed Guizani',
     'hero.subtitle': '4th Year Cybersecurity Engineering Student',
-    'hero.description': "I'm a 4th-year Cybersecurity Engineering student, building on a Licence degree in Embedded Systems. I haven't tied myself to a single branch of cybersecurity yet — instead I'm exploring it broadly, from SOC operations and network security to offensive testing and secure development. I'm genuinely open to any opportunity that will sharpen my skills: I learn fast, embrace real-world challenges, and I'm eager to grow with a team that helps me discover where I can contribute most.",
+    'hero.description': "I audit APIs, run open-source SOC pipelines and write up exactly what broke. Looking for a summer internship in cybersecurity.",
     'skills.title': 'Technical Skills',
     'experience.title': 'Experience',
     'projects.title': 'Projects',
@@ -34,7 +34,7 @@ const translations = {
   fr: {
     'hero.title': 'Mohamed Guizani',
     'hero.subtitle': 'Étudiant en 4ème année Génie Cybersécurité',
-    'hero.description': "Étudiant en 4ème année de Génie Cybersécurité, fort d'une Licence en Systèmes Embarqués. Je ne me suis pas encore enfermé dans une seule branche de la cybersécurité : je l'explore largement, des opérations SOC et la sécurité réseau aux tests offensifs et au développement sécurisé. Je suis réellement ouvert à toute opportunité qui renforcera mes compétences : j'apprends vite, j'aime relever des défis concrets, et je suis impatient de grandir au sein d'une équipe qui m'aidera à trouver où je peux le mieux contribuer.",
+    'hero.description': "J'audite des API, je monte des pipelines SOC open source et je documente précisément ce qui a cédé. À la recherche d'un stage d'été en cybersécurité.",
     'skills.title': 'Compétences Techniques',
     'experience.title': 'Expérience',
     'projects.title': 'Projets',
@@ -48,7 +48,7 @@ const translations = {
   zh: {
     'hero.title': '穆罕默德·吉扎尼',
     'hero.subtitle': '网络安全工程四年级学生',
-    'hero.description': '网络安全工程四年级学生，拥有嵌入式系统学士（Licence）学位。我尚未将自己局限于网络安全的某个分支，而是广泛探索这一领域——从 SOC 运营、网络安全到攻击性测试与安全开发。我真诚地对任何能提升我技能的机会持开放态度：我学习能力强，乐于迎接真实世界的挑战，并渴望在能帮助我发现自身最大价值的团队中成长。',
+    'hero.description': "我审计 API，搭建开源 SOC 流水线，并详细记录每一个被攻破的环节。正在寻找网络安全方向的暑期实习。",
     'skills.title': '技术技能',
     'experience.title': '工作经验',
     'projects.title': '项目',
@@ -62,7 +62,7 @@ const translations = {
   de: {
     'hero.title': 'Mohamed Guizani',
     'hero.subtitle': 'Student im 4. Jahr Cybersecurity Engineering',
-    'hero.description': "Cybersecurity-Engineering-Student im 4. Jahr, aufbauend auf einem Licence-Abschluss in Embedded Systems. Ich habe mich noch nicht auf einen einzelnen Bereich der Cybersicherheit festgelegt – stattdessen erkunde ich das Feld breit, von SOC-Betrieb und Netzwerksicherheit bis hin zu offensiven Tests und sicherer Entwicklung. Ich bin wirklich offen für jede Gelegenheit, die meine Fähigkeiten schärft: Ich lerne schnell, stelle mich gerne realen Herausforderungen und möchte in einem Team wachsen, das mir hilft herauszufinden, wo ich am meisten beitragen kann.",
+    'hero.description': "Ich prüfe APIs, betreibe Open-Source-SOC-Pipelines und dokumentiere genau, was gebrochen ist. Auf der Suche nach einem Sommerpraktikum in der Cybersicherheit.",
     'skills.title': 'Technische Fähigkeiten',
     'experience.title': 'Erfahrung',
     'projects.title': 'Projekte',
@@ -76,7 +76,7 @@ const translations = {
   ar: {
     'hero.title': 'محمد قيزاني',
     'hero.subtitle': 'طالب هندسة الأمن السيبراني - السنة الرابعة',
-    'hero.description': 'طالب في السنة الرابعة من هندسة الأمن السيبراني، بالاعتماد على شهادة إجازة (ليسانس) في الأنظمة المدمجة. لم أحصر نفسي بعد في فرع واحد من الأمن السيبراني، بل أستكشف المجال بشكل واسع — من عمليات SOC وأمن الشبكات إلى الاختبارات الهجومية والتطوير الآمن. أنا منفتح بصدق على أي فرصة تصقل مهاراتي: أتعلّم بسرعة، وأحب خوض التحديات الواقعية، وأتطلّع إلى النمو ضمن فريق يساعدني على اكتشاف حيث يمكنني تقديم أفضل مساهمة.',
+    'hero.description': "أُدقّق واجهات API، وأبني خطوط SOC مفتوحة المصدر، وأوثّق بدقة ما تمّ اختراقه. أبحث عن تدريب صيفي في الأمن السيبراني.",
     'skills.title': 'المهارات التقنية',
     'experience.title': 'الخبرة',
     'projects.title': 'المشاريع',
