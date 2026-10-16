@@ -4,6 +4,7 @@ import { ArmoredHero } from "@/components/home/ArmoredHero";
 import { ProjectCarousel } from "@/components/home/ProjectCarousel";
 import { ExperienceTimeline } from "@/components/home/ExperienceTimeline";
 import { SkillsSection } from "@/components/home/SkillsSection";
+import { TerminalProfile } from "@/components/home/TerminalProfile";
 import { ContactSection } from "@/components/home/ContactSection";
 import { Reveal } from "@/components/Reveal";
 import { education, languages } from "@/data/portfolio";
@@ -27,6 +28,13 @@ export default function Home() {
       <ArmoredHero />
 
       <div className="mx-auto w-full max-w-[90rem] px-5 sm:px-8">
+        <section id="about" className="scroll-mt-16 pt-20 sm:pt-28">
+          <Reveal>
+            <SectionHeading title="About me" />
+          </Reveal>
+          <TerminalProfile />
+        </section>
+
         <section id="work" className="scroll-mt-16 py-20 sm:py-28">
           <Reveal>
             <SectionHeading
