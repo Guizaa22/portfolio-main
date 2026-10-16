@@ -1,6 +1,6 @@
 "use client";
 
-import { ArmoredHero } from "@/components/home/ArmoredHero";
+import { PortraitHero } from "@/components/home/PortraitHero";
 import { ProjectCarousel } from "@/components/home/ProjectCarousel";
 import { ExperienceTimeline } from "@/components/home/ExperienceTimeline";
 import { SkillsSection } from "@/components/home/SkillsSection";
@@ -25,7 +25,7 @@ function SectionHeading({ title, intro }: { title: string; intro?: string }) {
 export default function Home() {
   return (
     <>
-      <ArmoredHero />
+      <PortraitHero />
 
       <div className="mx-auto w-full max-w-[90rem] px-5 sm:px-8">
         <section id="about" className="scroll-mt-16 pt-20 sm:pt-28">

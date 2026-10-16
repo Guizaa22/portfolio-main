@@ -710,27 +710,148 @@ html[data-seen="1"] .site-loader {
 }
 
 /* ============================================================
-   Hero scan line over the unmasked face
+   Portrait hero
    ============================================================ */
-@keyframes scan-sweep {
-  0% { transform: translateY(-110%); }
-  100% { transform: translateY(110%); }
+.hero-title {
+  font-family: var(--font-archivo), system-ui, sans-serif;
+  font-weight: 300;
+  font-variation-settings: "wdth" 100;
+  letter-spacing: -0.035em;
+  line-height: 0.95;
 }
 
-@keyframes eye-flicker {
-  0%, 100% { opacity: 1; }
-  46% { opacity: 1; }
-  48% { opacity: 0.25; }
-  52% { opacity: 1; }
-  80% { opacity: 0.6; }
+/* soft fade where the photo was cropped (sides, and the bottom while the figure falls in) */
+.portrait-img {
+  -webkit-mask-image:
+    linear-gradient(to right, transparent, #000 16%, #000 88%, transparent),
+    linear-gradient(to bottom, #000 82%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to right, transparent, #000 16%, #000 88%, transparent),
+    linear-gradient(to bottom, #000 82%, transparent);
+  mask-composite: intersect;
 }
 
-.eye-glow {
-  animation: eye-flicker 5.5s steps(1, end) infinite;
+/* cursor spotlight + ring (mouse only; JS sets --mx / --my and data-active) */
+.portrait-fx {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  background: radial-gradient(circle 190px at var(--mx, 50%) var(--my, 30%), rgb(var(--primary) / 0.22), transparent 70%);
+}
+.portrait-ring {
+  position: absolute;
+  left: var(--mx, 50%);
+  top: var(--my, 30%);
+  width: 46px;
+  height: 46px;
+  margin: -23px 0 0 -23px;
+  border-radius: 9999px;
+  border: 1.5px solid rgb(var(--primary));
+  box-shadow: 0 0 18px rgb(var(--primary) / 0.5);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.portrait-wrap[data-active="1"] .portrait-fx,
+.portrait-wrap[data-active="1"] .portrait-ring {
+  opacity: 1;
+}
+
+/* ---- First-visit intro: the figure falls from above and lands ----
+   Timeline (1.7s, starts once the counter curtain has lifted): the fall runs
+   to 58%, the landing effects fire at 58%, the text rises just before.
+   html[data-seen="1"] (set by the head script on repeat visits, or by the
+   hero when the intro ends) and reduced-motion switch all of it off. */
+@keyframes hero-drop {
+  0% {
+    transform: translateY(-135vh) scale(0.94);
+    filter: blur(7px) brightness(1.5);
+    animation-timing-function: cubic-bezier(0.5, 0, 0.85, 0.45);
+  }
+  58% {
+    transform: translateY(0) scale(1);
+    filter: blur(0) brightness(1.2);
+    animation-timing-function: cubic-bezier(0.2, 0.7, 0.3, 1);
+  }
+  70% {
+    transform: translateY(-1.6vh);
+    filter: none;
+    animation-timing-function: ease-in;
+  }
+  82% {
+    transform: translateY(0.5vh);
+  }
+  100% {
+    transform: translateY(0);
+    filter: none;
+  }
+}
+
+@keyframes hero-flash {
+  0%, 57% { opacity: 0; }
+  58% { opacity: 0.5; }
+  100% { opacity: 0; }
+}
+
+@keyframes hero-shock {
+  0%, 57% { opacity: 0; transform: translateX(-50%) scale(0.2); }
+  58% { opacity: 0.9; transform: translateX(-50%) scale(0.2); }
+  100% { opacity: 0; transform: translateX(-50%) scale(3.2); }
+}
+
+@keyframes hero-trail {
+  0%, 48% { opacity: 0.9; }
+  60%, 100% { opacity: 0; }
+}
+
+@keyframes hero-rise {
+  from { opacity: 0; transform: translateY(26px); }
+  to { opacity: 1; transform: none; }
+}
+
+.hero-drop {
+  animation: hero-drop 1.7s both;
+  animation-delay: 1.7s;
+}
+
+.hero-flash {
+  opacity: 0;
+  background: radial-gradient(45% 45% at 68% 72%, rgb(var(--primary) / 0.6), transparent 70%);
+  animation: hero-flash 1.7s both;
+  animation-delay: 1.7s;
+}
+
+.hero-shock {
+  opacity: 0;
+  animation: hero-shock 1.7s both;
+  animation-delay: 1.7s;
+}
+
+.hero-trail {
+  opacity: 0;
+  animation: hero-trail 1.7s both;
+  animation-delay: 1.7s;
+}
+
+.hero-rise {
+  animation: hero-rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation-delay: 2.45s;
+}
+.hero-rise-2 { animation-delay: 2.6s; }
+.hero-rise-3 { animation-delay: 2.75s; }
+.hero-rise-4 { animation-delay: 2.9s; }
+
+html[data-seen="1"] .hero-anim {
+  animation: none !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .eye-glow { animation: none; }
+  .hero-anim {
+    animation: none !important;
+  }
 }
 
 /* Hide the scrollbar on horizontal strips (they scroll with wheel, drag, touch and arrows). */
