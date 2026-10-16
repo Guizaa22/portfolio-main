@@ -134,14 +134,14 @@ export function PortraitHero() {
           <Image
             src="/img/portrait.webp"
             alt="Mohamed Guizani in a black armored cybersecurity suit with red light strips"
-            width={461}
-            height={1024}
+            width={864}
+            height={1920}
             priority
             sizes="(min-width: 1024px) 40vh, 70vw"
             className="portrait-img h-full w-full select-none object-contain"
           />
           {/* name plate on the chest */}
-          <div className="absolute left-[12%] top-[56%] w-[31%] rounded-[3px] border border-primary/80 bg-black/80 px-[2.5%] py-[1.4%] text-center">
+          <div className="absolute left-[12%] top-[60%] w-[31%] rounded-[3px] border border-primary/80 bg-black/80 px-[2.5%] py-[1.4%] text-center">
             <p className="font-display text-[clamp(0.55rem,6cqw,1rem)] font-bold leading-tight tracking-wide text-white">
               GUIZANI
             </p>
