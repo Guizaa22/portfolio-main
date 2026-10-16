@@ -28,7 +28,7 @@ export function Loader() {
       return;
     }
 
-    const duration = 1300;
+    const duration = 900;
     const start = performance.now();
     let frame = 0;
 
